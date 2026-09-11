@@ -98,7 +98,9 @@ export function LearnWorkspace({ course, modules, flatLessons, lesson, completed
     void post({ lessonId: lesson.id, watchedSecs: secs });
   }
 
-  // keyboard shortcuts: ← previous, → next, c complete
+  // Keyboard shortcuts: ← previous, → next, c toggle-complete.
+  // Deliberately re-bound when the neighbouring lessons / enrolment state change.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement | null;

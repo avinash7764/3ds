@@ -25,6 +25,12 @@ export const metadata: Metadata = {
     title: `${env.siteName} — 3DEXPERIENCE learning platform`,
     description: "Structured CATIA / SIMULIA / ENOVIA / DELMIA courses with Google sign-in, student & admin dashboards.",
     type: "website",
+    images: [{ url: "/media/hero.jpg", width: 1280, height: 720, alt: "Engineering students reviewing a 3D CAD model on the 3DEXPERIENCE platform" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${env.siteName} — learn the 3DEXPERIENCE® platform`,
+    images: ["/media/hero.jpg"],
   },
 };
 

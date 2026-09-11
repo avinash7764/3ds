@@ -1,3 +1,4 @@
+# dependencies / build output
 node_modules
 .next
 out
@@ -5,20 +6,20 @@ build
 dist
 coverage
 *.log
-.env
-.env.local
 .DS_Store
-data/*.db
-data/*.db
 next-env.d.ts
 tsconfig.tsbuildinfo
-# Secrets / local config: .env is never committed — copy .env.example instead.
-# (Every value also has a safe default in src/lib/env.ts, so `npm run dev` works even without it.)
-.env.local
-.env.production
-.env*.local
+
+# local database (recreated by `npm run setup`)
 data/
-data/
+
+# faculty uploads — served from public/uploads, not versioned
 public/uploads/*
 !public/uploads/.gitkeep
 !public/uploads/README.md
+
+# secrets / local config — copy .env.example to .env (all vars have safe defaults)
+.env
+.env.local
+.env.production
+.env*.local
