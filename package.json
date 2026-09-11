@@ -1,0 +1,38 @@
+{
+  "name": "3ds-academy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "3DS Academy \u2014 full-stack 3DEXPERIENCE (Dassault Syst\u00e8mes) learning platform with Google login, student and admin dashboards.",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 3000",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:seed": "tsx scripts/seed.ts",
+    "setup": "tsx scripts/seed.ts",
+    "check:links": "tsx scripts/check-video-links.ts"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "next": "14.2.33",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zod": "3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
+    "autoprefixer": "10.4.21",
+    "eslint": "8.57.1",
+    "eslint-config-next": "14.2.33",
+    "postcss": "8.5.6",
+    "tailwindcss": "3.4.17",
+    "tsx": "4.20.6",
+    "typescript": "5.6.3"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
