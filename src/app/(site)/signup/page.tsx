@@ -14,7 +14,7 @@ const DEMO_ACCOUNTS = [
   { email: "admin@3dsacademy.dev", label: "Admin", role: "ADMIN" as const },
 ];
 
-export default async function LoginPage({ searchParams }: { searchParams: { next?: string } }) {
+export default async function SignUpPage({ searchParams }: { searchParams: { next?: string } }) {
   const user = await currentUser();
   const next = searchParams.next?.startsWith("/") ? searchParams.next : user?.role === "ADMIN" ? "/admin" : "/dashboard";
   if (user) redirect(next);
@@ -29,15 +29,18 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
         <div className="relative flex w-full flex-col justify-between p-12">
           <Logo dark />
           <div>
-            <h2 className="max-w-md text-3xl font-extrabold leading-tight tracking-tight text-white">
-              One Google account. Student progress, faculty uploads, certificates.
+            <div className="inline-flex items-center gap-2 rounded-full border border-volt-500/30 bg-volt-500/10 px-3 py-1 text-xs font-bold text-volt-300">
+              <Icon name="sparkle" className="h-3.5 w-3.5" /> 100% Free Student Account
+            </div>
+            <h2 className="mt-4 max-w-md text-3xl font-extrabold leading-tight tracking-tight text-white">
+              Start mastering CATIA, SIMULIA, and 3DEXPERIENCE today.
             </h2>
             <ul className="mt-8 space-y-4">
               {[
-                { icon: "shield", title: "Gmail-based sign in", copy: "Verified Google authentication, secure session cookie, no passwords to remember or lose." },
-                { icon: "video", title: "Watch anywhere", copy: "YouTube and Google Drive lessons resume exactly where you stopped." },
-                { icon: "upload", title: "Faculty can publish in minutes", copy: "Paste a Drive or YouTube link, set the module order, hit publish." },
-                { icon: "award", title: "Certificate on completion", copy: "Every lesson tracked; a verifiable credential ID generated at 100%." },
+                { icon: "check", title: "Instant Access", copy: "One-click Google signup gives you instant access to all self-paced CAD modules." },
+                { icon: "video", title: "Interactive Player", copy: "HD video walkthroughs with step-by-step part files and keyboard navigation." },
+                { icon: "award", title: "Verifiable Certificates", copy: "Earn personalized certificates of completion with unique verification IDs." },
+                { icon: "shield", title: "No Passwords Needed", copy: "Securely authenticated by Google OAuth so your account is always safe." },
               ].map((f) => (
                 <li key={f.title} className="flex gap-3.5">
                   <span className="mt-0.5 inline-flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-white/10 text-volt-300">
@@ -52,8 +55,7 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
             </ul>
           </div>
           <p className="text-[12px] leading-5 text-ink-400">
-            By continuing you agree to the demo terms of use. This is an independent learning project, not affiliated with Dassault
-            Systèmes.
+            By signing up, you agree to the learning platform terms. No credit card required.
           </p>
         </div>
       </section>
@@ -66,21 +68,20 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
 
           {/* Mode Switcher Tabs */}
           <div className="mt-6 flex rounded-xl bg-ink-100 p-1 lg:mt-0">
-            <span className="flex-1 rounded-lg bg-white py-2 text-center text-xs font-bold text-ink-900 shadow-sm">
-              Sign In
-            </span>
             <Link
-              href={`/signup${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
+              href={`/login${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
               className="flex-1 rounded-lg py-2 text-center text-xs font-bold text-ink-500 transition-colors hover:text-ink-900"
             >
-              Create Account
+              Sign In
             </Link>
+            <span className="flex-1 rounded-lg bg-white py-2 text-center text-xs font-bold text-ink-900 shadow-sm">
+              Create Account
+            </span>
           </div>
 
-          <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-ink-900">Sign in to 3DS Academy</h1>
+          <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-ink-900">Create your 3DS Academy account</h1>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Sign in with your Google account to access your enrolled courses, progress markers, and certificates.
-            {env.adminEmails.length ? ` Accounts matching ${env.adminEmails.join(", ")} automatically receive instructor and admin privileges.` : ""}
+            Sign up with your Google account to enroll in courses, track your lessons, and download exercise files.
           </p>
 
           <div className="card mt-6 p-6">
@@ -90,24 +91,24 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
               next={next}
               allowDemo={env.allowDemoLogin}
               demoAccounts={DEMO_ACCOUNTS}
-              mode="signin"
+              mode="signup"
             />
           </div>
 
           <p className="mt-6 text-center text-[13px] text-slate-500">
-            Don&apos;t have an account yet?{" "}
+            Already have an account?{" "}
             <Link
-              href={`/signup${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
+              href={`/login${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
               className="font-bold text-volt-700 hover:underline"
             >
-              Sign up with Google
+              Sign in with Google
             </Link>
           </p>
 
           <p className="mt-2 text-center text-[12.5px] text-slate-400">
             Or{" "}
             <Link href="/courses" className="font-medium text-slate-600 hover:underline">
-              browse the course catalog
+              browse courses without signing up
             </Link>
           </p>
         </div>
