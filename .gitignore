@@ -1,0 +1,25 @@
+# dependencies / build output
+node_modules
+.next
+out
+build
+dist
+coverage
+*.log
+.DS_Store
+next-env.d.ts
+tsconfig.tsbuildinfo
+
+# local database (recreated by `npm run setup`)
+data/
+
+# faculty uploads — served from public/uploads, not versioned
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/README.md
+
+# secrets / local config — copy .env.example to .env (all vars have safe defaults)
+.env
+.env.local
+.env.production
+.env*.local
