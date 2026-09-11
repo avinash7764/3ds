@@ -100,6 +100,7 @@ export function LearnWorkspace({ course, modules, flatLessons, lesson, completed
 
   // Keyboard shortcuts: ← previous, → next, c toggle-complete.
   // Deliberately re-bound when the neighbouring lessons / enrolment state change.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement | null;
@@ -110,7 +111,6 @@ export function LearnWorkspace({ course, modules, flatLessons, lesson, completed
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [next, prev, isDone, enrolled, autoAdvance]);
 
   return (

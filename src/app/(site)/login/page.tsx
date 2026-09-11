@@ -34,10 +34,10 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
             </h2>
             <ul className="mt-8 space-y-4">
               {[
-                { icon: "shield", title: "Gmail-based sign in", copy: "Verified Google authentication, secure session cookie, no passwords to remember or lose." },
+                { icon: "shield", title: "Gmail-based sign in", copy: "Verified Google ID tokens, an httpOnly session cookie, no passwords in our database." },
                 { icon: "video", title: "Watch anywhere", copy: "YouTube and Google Drive lessons resume exactly where you stopped." },
                 { icon: "upload", title: "Faculty can publish in minutes", copy: "Paste a Drive or YouTube link, set the module order, hit publish." },
-                { icon: "award", title: "Certificate on completion", copy: "Every lesson tracked; a verifiable credential ID generated at 100%." },
+                { icon: "award", title: "Certificate on completion", copy: "Every lesson tracked; a verifiable credential ID at 100%." },
               ].map((f) => (
                 <li key={f.title} className="flex gap-3.5">
                   <span className="mt-0.5 inline-flex h-9 w-9 flex-none items-center justify-center rounded-xl bg-white/10 text-volt-300">
@@ -63,51 +63,27 @@ export default async function LoginPage({ searchParams }: { searchParams: { next
           <div className="lg:hidden">
             <Logo />
           </div>
-
-          {/* Mode Switcher Tabs */}
-          <div className="mt-6 flex rounded-xl bg-ink-100 p-1 lg:mt-0">
-            <span className="flex-1 rounded-lg bg-white py-2 text-center text-xs font-bold text-ink-900 shadow-sm">
-              Sign In
-            </span>
-            <Link
-              href={`/signup${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
-              className="flex-1 rounded-lg py-2 text-center text-xs font-bold text-ink-500 transition-colors hover:text-ink-900"
-            >
-              Create Account
-            </Link>
-          </div>
-
-          <h1 className="mt-6 text-2xl font-extrabold tracking-tight text-ink-900">Sign in to 3DS Academy</h1>
+          <h1 className="mt-8 text-2xl font-extrabold tracking-tight text-ink-900 lg:mt-0">Sign in to 3DS Academy</h1>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Sign in with your Google account to access your enrolled courses, progress markers, and certificates.
-            {env.adminEmails.length ? ` Accounts matching ${env.adminEmails.join(", ")} automatically receive instructor and admin privileges.` : ""}
+            Use the Google account your college issued — that email becomes your student or admin identity. New addresses get a student
+            account automatically
+            {env.adminEmails.length ? `, and addresses on the admin list (${env.adminEmails.join(", ")}) get the admin panel` : ""}.
           </p>
 
-          <div className="card mt-6 p-6">
+          <div className="card mt-7 p-6">
             <GoogleSignIn
               clientId={env.googleClientId}
               configured={env.googleConfigured}
               next={next}
               allowDemo={env.allowDemoLogin}
               demoAccounts={DEMO_ACCOUNTS}
-              mode="signin"
             />
           </div>
 
           <p className="mt-6 text-center text-[13px] text-slate-500">
-            Don&apos;t have an account yet?{" "}
-            <Link
-              href={`/signup${searchParams.next ? `?next=${encodeURIComponent(searchParams.next)}` : ""}`}
-              className="font-bold text-volt-700 hover:underline"
-            >
-              Sign up with Google
-            </Link>
-          </p>
-
-          <p className="mt-2 text-center text-[12.5px] text-slate-400">
-            Or{" "}
-            <Link href="/courses" className="font-medium text-slate-600 hover:underline">
-              browse the course catalog
+            Just browsing?{" "}
+            <Link href="/courses" className="font-bold text-volt-700 hover:underline">
+              See the public course catalogue
             </Link>
           </p>
         </div>

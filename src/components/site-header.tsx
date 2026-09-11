@@ -118,8 +118,8 @@ export function SiteHeader({ user }: { user: PublicUser | null }) {
               <LinkButton href="/login" variant="ghost" size="sm">
                 Sign in
               </LinkButton>
-              <LinkButton href="/signup" variant="primary" size="sm">
-                Sign up
+              <LinkButton href="/login?next=/dashboard" variant="primary" size="sm">
+                Start learning free
               </LinkButton>
             </div>
           )}
@@ -146,14 +146,9 @@ export function SiteHeader({ user }: { user: PublicUser | null }) {
               </Link>
             ))}
             {user ? null : (
-              <div className="mt-2 flex flex-col gap-2">
-                <LinkButton href="/login" size="md" variant="outline">
-                  Sign in with Google
-                </LinkButton>
-                <LinkButton href="/signup" size="md">
-                  Create free account
-                </LinkButton>
-              </div>
+              <LinkButton href="/login" size="md" className="mt-2">
+                Sign in with Google
+              </LinkButton>
             )}
           </div>
         </div>
