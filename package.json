@@ -5,7 +5,7 @@
   "description": "3DS Academy \u2014 full-stack 3DEXPERIENCE (Dassault Syst\u00e8mes) learning platform with Google login, student and admin dashboards.",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3000",
-    "build": "next build",
+    "build": "NODE_OPTIONS='--max-old-space-size=1536' next build",
     "start": "next start -H 0.0.0.0 -p 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

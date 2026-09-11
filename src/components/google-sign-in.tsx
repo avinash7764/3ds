@@ -35,12 +35,15 @@ export function GoogleSignIn({
   next = "/dashboard",
   allowDemo,
   demoAccounts,
+  mode = "signin",
 }: {
   clientId: string;
   configured: boolean;
   next?: string;
   allowDemo: boolean;
   demoAccounts: DemoAccount[];
+  /** Labels the Google button for the page it sits on; /signup passes "signup". */
+  mode?: "signin" | "signup";
 }) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
@@ -80,7 +83,7 @@ export function GoogleSignIn({
         theme: "filled_black",
         size: "large",
         shape: "pill",
-        text: "continue_with",
+        text: mode === "signup" ? "signup_with" : "continue_with",
         logo_alignment: "left",
         width: Math.min(340, mountRef.current.parentElement?.clientWidth ?? 320),
       });
@@ -101,7 +104,7 @@ export function GoogleSignIn({
     return () => {
       cancelled = true;
     };
-  }, [clientId, configured, next]);
+  }, [clientId, configured, next, mode]);
 
   async function demoLogin(email: string) {
     setBusy(email);

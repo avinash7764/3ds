@@ -76,12 +76,19 @@ export function verifySessionToken(token?: string | null): SessionPayload | null
 }
 
 export function sessionCookieOptions(token: string) {
+  // In iframe environments (such as AI Studio preview), SameSite: 'none' and Secure: true are required
+  // so cross-origin iframes do not block session cookies.
+  const isHttpsOrIframe = Boolean(
+    process.env.APP_URL?.startsWith("https://") ||
+    process.env.NEXT_PUBLIC_SITE_URL?.startsWith("https://") ||
+    process.env.NODE_ENV === "production"
+  );
   return {
     name: env.sessionCookie,
     value: token,
     httpOnly: true,
-    sameSite: "lax" as const,
-    secure: process.env.NODE_ENV === "production",
+    sameSite: (isHttpsOrIframe ? "none" : "lax") as "none" | "lax",
+    secure: isHttpsOrIframe,
     path: "/",
     maxAge: env.sessionMaxAge,
   };
